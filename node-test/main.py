@@ -21,6 +21,8 @@ class Machine():
                 break # found the value so break
         self.api_name = self.asJson['api_name']
 
+        # construct the caps
+
     def __str__( self ):
         return 'The machine name is: ' + self.asJson['name']
         # convert the json data to python data
@@ -42,6 +44,6 @@ mobile_machine = Machine('Android Galaxy Note 3 / 4.4')
 # print get_all()
 
 # print machines json value (if these print, it means the machines have been successfully retrieved & you can interact with them in python)
-print windows_machine
+print windows_machine.asJson
 print mac_machine
 print mobile_machine

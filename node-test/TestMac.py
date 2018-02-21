@@ -1,6 +1,7 @@
 import unittest
 from selenium import webdriver
 import requests
+import sys
 
 class SeleniumTestWindows(unittest.TestCase):
     def setUp(self):
@@ -13,10 +14,13 @@ class SeleniumTestWindows(unittest.TestCase):
         self.test_result = None
 
         caps = {}
+        caps['name'] = 'Selenium Test Example'
+        caps['build'] = '1.0'
         caps['browserName'] = 'Chrome'
-        caps['version'] = '60x64'
-        caps['platform'] = 'Windows 10'
-        caps['screenResolution'] = '1366x768'
+        caps['deviceName'] = 'Nexus 6P'
+        caps['platformVersion'] = '7.0'
+        caps['platformName'] = 'Android'
+        caps['deviceOrientation'] = 'portrait'
 
         self.driver = webdriver.Remote(
             desired_capabilities=caps,
@@ -26,10 +30,14 @@ class SeleniumTestWindows(unittest.TestCase):
         self.driver.implicitly_wait(20)
 
     def test_CBT(self):
+        try:
             self.driver.get('local:8000')
             self.assertEqual("local", self.driver.title)
             self.test_result = 'pass'
             self.driver.quit()
+        except:
+             print("Unexpected error:", sys.exc_info()[0])
+             raise
 
 
 if __name__ == '__main__':
