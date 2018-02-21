@@ -2,6 +2,7 @@
 import json
 from json import JSONEncoder
 import urllib2
+import requests
 
 # selenium imports
 from selenium import webdriver
@@ -9,8 +10,11 @@ from selenium import webdriver
 username = 'jbhtcher@memphis.edu' # username to log in with
 authkey = 'u63c4853726aabbb' # auth token
 
-endpoint = "https://crossbrowsertesting.com/api/v3/selenium/browsers?format=json"
-all_browsers_available = json.loads(urllib2.urlopen(endpoint).read())
+# MARK: - endpoints used with the CBT API
+all_browsers_endpoint = "https://crossbrowsertesting.com/api/v3/selenium/browsers?format=json"
+all_browsers_available = json.loads(urllib2.urlopen(all_browsers_endpoint).read())
+
+
 
 class Machine():
     def __init__(self, name):
@@ -34,6 +38,18 @@ class Machine():
 
     def test_local_title(self): # should set Machine.didPass to True on success
         pass
+class CBTSession():
+    # these endpoints need authorization, so include them in an API session
+    test_history_endpoint = "https://crossbrowsertesting.com/api/v3/selenium?format=json"
+    test_history = json.loads(urllib2.urlopen(test_history_endpoint).read())
+    def __init__(self, name):
+        self.api_session = requests.Session()
+        self.api_session.auth = (self.username,self.authkey)
+
+
+
+
+
 
 def get_all():
     out_array = []
@@ -50,5 +66,5 @@ mobile_machine = Machine('Android Galaxy Note 3 / 4.4')
 
 # print machines json value (if these print, it means the machines have been successfully retrieved & you can interact with them in python)
 # print windows_machine.caps
-print json.dumps(mac_machine.asJson, indent=4, sort_keys=True)
+# print json.dumps(mac_machine.asJson, indent=4, sort_keys=True)
 # print mobile_machine
