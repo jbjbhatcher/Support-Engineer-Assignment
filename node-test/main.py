@@ -40,9 +40,11 @@ class Machine():
 
     def test_local_title(self): # should set Machine.didPass to True on success
         pass
+
+# This class is for API calls that require authorization
 class CBTSession():
     def __init__(self):
-        # Accessing your testing history requires authorization, so the following allows us to authrorize on the server: 
+        # Accessing your testing history requires authorization, so the following allows us to authrorize on the server:
         self.api_session = requests.Session()
         self.api_session.auth = (username, authkey)
         response = self.api_session.get(test_history_endpoint)
