@@ -14,6 +14,8 @@ authkey = 'u63c4853726aabbb' # auth token
 all_browsers_endpoint = "https://crossbrowsertesting.com/api/v3/selenium/browsers?format=json"
 all_browsers_available = json.loads(urllib2.urlopen(all_browsers_endpoint).read())
 
+test_history_endpoint = "https://crossbrowsertesting.com/api/v3/selenium?format=json"
+
 
 
 class Machine():
@@ -39,16 +41,12 @@ class Machine():
     def test_local_title(self): # should set Machine.didPass to True on success
         pass
 class CBTSession():
-    # these endpoints need authorization, so include them in an API session
-    test_history_endpoint = "https://crossbrowsertesting.com/api/v3/selenium?format=json"
-    test_history = json.loads(urllib2.urlopen(test_history_endpoint).read())
-    def __init__(self, name):
+    def __init__(self):
+        # Accessing your testing history requires authorization, so the following allows us to authrorize on the server: 
         self.api_session = requests.Session()
-        self.api_session.auth = (self.username,self.authkey)
-
-
-
-
+        self.api_session.auth = (username, authkey)
+        response = self.api_session.get(test_history_endpoint)
+        self.test_history = response.text
 
 
 def get_all():
@@ -57,14 +55,20 @@ def get_all():
         out_array.append (all_browsers_available[i]['name'])
     return out_array
 
+# MARK: - Machine testing
 # create machine instances
-windows_machine = Machine('Windows 10')
-mac_machine = Machine('Mac OSX 10.9')
-mobile_machine = Machine('Android Galaxy Note 3 / 4.4')
-
+# windows_machine = Machine('Windows 10')
+# mac_machine = Machine('Mac OSX 10.9')
+# mobile_machine = Machine('Android Galaxy Note 3 / 4.4')
+# -------------------------------------------------------------
 # print get_all()
 
 # print machines json value (if these print, it means the machines have been successfully retrieved & you can interact with them in python)
 # print windows_machine.caps
 # print json.dumps(mac_machine.asJson, indent=4, sort_keys=True)
 # print mobile_machine
+#
+
+# MARK: - CBT test
+cbt = CBTSession()
+print cbt.test_history
