@@ -14,13 +14,12 @@ class SeleniumTestWindows(unittest.TestCase):
         self.test_result = None
 
         caps = {}
-        caps['name'] = 'Selenium Test Example'
+        caps['name'] = 'Selenium Test Example Windows'
         caps['build'] = '1.0'
         caps['browserName'] = 'Chrome'
-        caps['deviceName'] = 'Nexus 6P'
-        caps['platformVersion'] = '7.0'
-        caps['platformName'] = 'Android'
-        caps['deviceOrientation'] = 'portrait'
+        caps['version'] = '60x64'
+        caps['platform'] = 'Windows 10'
+        caps['screenResolution'] = '1366x768'
 
         self.driver = webdriver.Remote(
             desired_capabilities=caps,
@@ -31,8 +30,8 @@ class SeleniumTestWindows(unittest.TestCase):
 
     def test_CBT(self):
         try:
-            self.driver.get('local:8000')
-            self.assertEqual("local", self.driver.title)
+            self.driver.get('http://local:8000')
+            self.assertEqual("Hello world!", self.driver.title)
             self.test_result = 'pass'
             self.driver.quit()
         except:
