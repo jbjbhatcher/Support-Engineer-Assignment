@@ -1,7 +1,6 @@
 import unittest
 from selenium import webdriver
 import requests
-import sys
 
 class SeleniumTestWindows(unittest.TestCase):
     def setUp(self):
@@ -14,8 +13,11 @@ class SeleniumTestWindows(unittest.TestCase):
         self.test_result = None
 
         caps = {}
-        caps['name'] = 'Selenium Test Example'
+        # these parameters are on a test by test basis. You can change this name and it will reflect in your CBT history
+        caps['name'] = 'Selenium Test Example Mobile (Android)'
         caps['build'] = '1.0'
+
+        # these are specifying which machine you want to run the test on
         caps['browserName'] = 'Chrome'
         caps['deviceName'] = 'Nexus 6P'
         caps['platformVersion'] = '7.0'
@@ -31,8 +33,8 @@ class SeleniumTestWindows(unittest.TestCase):
 
     def test_CBT(self):
         try:
-            self.driver.get('local:8000')
-            self.assertEqual("local", self.driver.title)
+            self.driver.get('http://local:8000') # this is where we setup our local test server. NOTE: 'local' is used instead of localhost. This is a technical detail that can get kind of confusing, so just remember to use local when you are testing your website behind your firewall.
+            self.assertEqual("Hello world!", self.driver.title)
             self.test_result = 'pass'
             self.driver.quit()
         except:

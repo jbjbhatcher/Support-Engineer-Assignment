@@ -20,6 +20,11 @@ class Machine():
                 self.asJson = all_browsers_available[i]
                 break # found the value so break
         self.api_name = self.asJson['api_name']
+        self.caps = {
+            'name': 'Selenium Test',
+            'build': '1.0',
+            'deviceName': self.asJson['name']
+        }
 
         # construct the caps
 
@@ -44,6 +49,6 @@ mobile_machine = Machine('Android Galaxy Note 3 / 4.4')
 # print get_all()
 
 # print machines json value (if these print, it means the machines have been successfully retrieved & you can interact with them in python)
-print windows_machine.asJson
-print mac_machine
-print mobile_machine
+# print windows_machine.caps
+print json.dumps(mac_machine.asJson, indent=4, sort_keys=True)
+# print mobile_machine
