@@ -29,7 +29,14 @@ class SeleniumTestWindows(unittest.TestCase):
         self.driver.implicitly_wait(20)
 
     def test_CBT(self):
-        def set_remote_test_result(): # this function should be called after having a successful
+        def set_remote_test_result(): # this function should be called after having a successful test result
+            set_endpoint = 'crossbrowsertesting.com/api/v3/selenium/'
+            # get the most recent test with the 'api_name' = Windows
+
+            # take that selenium id and set it = to pass
+
+            # profit
+
             pass
         try:
             self.driver.get('http://local:8000')
