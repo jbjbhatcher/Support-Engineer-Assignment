@@ -49,8 +49,8 @@ class CBTSession():
         response = self.api_session.get(test_history_endpoint)
         # assign responses
         # self.test_history = json.loads(response.text) # ALL test history, then load into python
-        self.most_recent_tests = self.api_session.get(test_history_endpoint + '?start_date=2018-02-22') # ?= passing parameters
-
+        most_recent_tests = self.api_session.get(test_history_endpoint + '?start_date=2018-02-22').text # ?= passing parameters
+        self.most_recent_tests = json.loads(most_recent_tests) # for pretty printing, use: json.dumps(cbt.most_recent_tests, indent=4, sort_keys=True)
 
 def get_all(): # gets all browsers available
     out_array = []
@@ -75,4 +75,5 @@ def get_all(): # gets all browsers available
 
 # MARK: - CBT test
 cbt = CBTSession()
-print cbt.most_recent_tests
+# pretty print the most recent tests
+print json.dumps(cbt.most_recent_tests, indent=4, sort_keys=True)
