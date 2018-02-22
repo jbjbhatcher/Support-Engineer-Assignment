@@ -26,10 +26,7 @@ class SeleniumTestWindows(unittest.TestCase):
             desired_capabilities=caps,
             command_executor="http://%s:%s@hub.crossbrowsertesting.com:80/wd/hub"%(self.username,self.authkey) # include username and authkey in url
         )
-
         self.driver.implicitly_wait(20)
-
-
 
     def test_CBT(self):
         def set_remote_test_result(): # this function should be called after having a successful
