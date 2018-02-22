@@ -1,6 +1,7 @@
 import unittest
 from selenium import webdriver
 import requests
+import sys
 
 class SeleniumTestWindows(unittest.TestCase):
     def setUp(self):
@@ -13,11 +14,11 @@ class SeleniumTestWindows(unittest.TestCase):
         self.test_result = None
 
         caps = {}
-        # these parameters are on a test by test basis. You can change this name and it will reflect in your CBT history
+        # these parameters are on a test by test basis. You can change the name and it will reflect in your CBT history
         caps['name'] = 'Selenium Test Example Mobile (Android)'
         caps['build'] = '1.0'
 
-        # these are specifying which machine you want to run the test on
+        # these parameters specify which machine you want to run the test on
         caps['browserName'] = 'Chrome'
         caps['deviceName'] = 'Nexus 6P'
         caps['platformVersion'] = '7.0'
@@ -26,7 +27,7 @@ class SeleniumTestWindows(unittest.TestCase):
 
         self.driver = webdriver.Remote(
             desired_capabilities=caps,
-            command_executor="http://%s:%s@hub.crossbrowsertesting.com:80/wd/hub"%(self.username,self.authkey) # include username and authkey in url
+            command_executor="http://%s:%s@hub.crossbrowsertesting.com:80/wd/hub" %(self.username,self.authkey) # include username and authkey in url
         )
 
         self.driver.implicitly_wait(20)

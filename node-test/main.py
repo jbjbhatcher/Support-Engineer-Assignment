@@ -16,12 +16,10 @@ all_browsers_available = json.loads(urllib2.urlopen(all_browsers_endpoint).read(
 
 test_history_endpoint = "https://crossbrowsertesting.com/api/v3/selenium?format=json"
 
-
-
 class Machine():
     def __init__(self, name):
         self.asJson = None
-        for i in range(len(all_browsers_available)): # purpose of this loop is to iterate over list of all possible browsers and to find the first matching occurence of a machine
+        for i in range(len(all_browsers_available)): # purpose of this loop is to iterate over list of all possible browsers and to find the first matching occurence of a desired machine
             if all_browsers_available[i]['name'] == name and self.asJson is None:
                 self.asJson = all_browsers_available[i]
                 break # found the value so break
@@ -43,19 +41,20 @@ class Machine():
 
 # This class is for API calls that require authorization
 class CBTSession():
+    # http://docs.python-requests.org/en/master/user/advanced/#session-objects
     def __init__(self):
         # Accessing your testing history requires authorization, so the following allows us to authrorize on the server:
         self.api_session = requests.Session()
         self.api_session.auth = (username, authkey)
         response = self.api_session.get(test_history_endpoint)
-        self.test_history = response.text
-
+        self.test_history = response.text # test history is a JSON string
 
 def get_all():
     out_array = []
     for i in range(len(all_browsers_available)):
         out_array.append (all_browsers_available[i]['name'])
     return out_array
+
 
 # MARK: - Machine testing
 # create machine instances
@@ -72,5 +71,5 @@ def get_all():
 #
 
 # MARK: - CBT test
-cbt = CBTSession()
-print cbt.test_history
+# cbt = CBTSession()
+# print cbt.test_history

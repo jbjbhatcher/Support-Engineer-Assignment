@@ -3,6 +3,7 @@ from selenium import webdriver
 import requests
 import sys
 
+
 class SeleniumTestWindows(unittest.TestCase):
     def setUp(self):
 
@@ -28,11 +29,16 @@ class SeleniumTestWindows(unittest.TestCase):
 
         self.driver.implicitly_wait(20)
 
+
+
     def test_CBT(self):
+        def set_remote_test_result(): # this function should be called after having a successful
+            pass
         try:
             self.driver.get('http://local:8000')
             self.assertEqual("Hello world!", self.driver.title)
             self.test_result = 'pass'
+            set_remote_test_result()
             self.driver.quit()
         except:
              print("Unexpected error:", sys.exc_info()[0])
