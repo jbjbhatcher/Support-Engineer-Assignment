@@ -51,9 +51,9 @@ class CBTSession():
         # self.test_history = json.loads(response.text) # ALL test history, then load into python
 
         # NOTE: the purpose of this is to get the 3 most recent tests that happened today
-        most_recent_tests = self.api_session.get(test_history_endpoint + '?start_date=2018-02-22&num=3').text # ?= passing parameters
+        most_recent_tests = self.api_session.get(test_history_endpoint + '?start_date=2018-02-22&num=1').text # ?= passing parameters
         self.most_recent_tests = json.loads(most_recent_tests) # for pretty printing, use: json.dumps(cbt.most_recent_tests, indent=4, sort_keys=True)
-
+        self.most_recent_test_id = self.most_recent_test_id = cbt.most_recent_tests['selenium'][0]['selenium_test_id'] # this gets the test id 
 def get_all(): # gets all browsers available
     out_array = []
     for i in range(len(all_browsers_available)):
@@ -78,4 +78,6 @@ def get_all(): # gets all browsers available
 # MARK: - CBT test
 cbt = CBTSession()
 # pretty print the most recent tests
-print json.dumps(cbt.most_recent_tests, indent=4, sort_keys=True)
+# most_recent = json.dumps(cbt.most_recent_tests, indent=4, sort_keys=True)
+most_recent_test_id = cbt.most_recent_tests['selenium'][0]['selenium_test_id']
+print most_recent
