@@ -7,6 +7,7 @@ This example project shows some of the basic functionality of the CBT API which 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ## Prerequisites
+First, download the project and CD into root. All commands are assuming presence in topmost directory.
 ### Install virtualenv
 
 ```
@@ -32,8 +33,6 @@ npm install -g cbt_tunnels
 ```
 
 ## Setup
-
-First, download the project and CD into root.
 ### HTTP Server
 Type the following command to start the HTTP server:
 
