@@ -26,7 +26,7 @@ Download the project, and cd into the root.
 Type the following command:
 
 ```
-
+python server/server.py
 ```
 to start the HTTP server.
 
@@ -53,15 +53,10 @@ upon success, this will set the result as 'pass' with the CBT PUT API endpoint.
 ### Test all machines
 
 Running the following command:
-
 ```
-Give an example
+python -m unittest discover tests/ -p '*.py'
 ```
 will test all machines in the 'tests' folder.
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Authors
 
