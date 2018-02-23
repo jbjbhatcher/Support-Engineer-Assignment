@@ -13,7 +13,7 @@ class SeleniumTestMac(unittest.TestCase):
     def setUp(self):
 
         self.api_session = requests.Session()
-        self.api_session.auth = (self.username,self.authkey)
+        self.api_session.auth = (username, authkey)
         self.test_result = None
 
         caps = {}
