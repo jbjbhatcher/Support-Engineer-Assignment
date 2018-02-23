@@ -7,13 +7,13 @@ This example project shows some of the basic functionality of the CBT API which 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
-Install virtualenv
+##Install virtualenv
 
 ```
 pip install virtualenv
 ```
 
-And the CBT Node Module
+##Install the CBT Node Module
 
 ```
 npm install -g cbt_tunnels
@@ -21,22 +21,20 @@ npm install -g cbt_tunnels
 
 ### Setup
 
-Download the project, and cd into the root.
-
-Type the following command:
+First, download the project and CD into root.
+## HTTP Server
+Type the following command to start the HTTP server:
 
 ```
 python server/server.py
 ```
-to start the HTTP server.
 
-Also,
-
+## CBT Tunnels
+Type the following to get the CBT Tunnels running.
 ```
 cbt_tunnels --username USERNAME --authkey AUTHKEY
 ```
-to get the CBT Tunnels running.
-
+Where USERNAME is your login, and AUTHKEY is your API auth key.
 ## Running the tests
 
 With this project, you may run tests on Windows, Android, and Mac devices.
