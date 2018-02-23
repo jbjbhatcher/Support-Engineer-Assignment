@@ -12,6 +12,18 @@ These instructions will get you a copy of the project up and running on your loc
 ```
 pip install virtualenv
 ```
+Then, to setup the virtualenv, type:
+```
+virtualenv env
+```
+to create a local python installation.
+### Install dependencies
+```
+env/bin/pip install selenium
+```
+```
+env/bin/pip install urllib2
+```
 
 ### Install the CBT Node Module
 
