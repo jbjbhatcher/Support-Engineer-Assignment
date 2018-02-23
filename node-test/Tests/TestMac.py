@@ -6,11 +6,11 @@ import json
 from json import JSONEncoder
 import urllib2
 
-class SeleniumTestWindows(unittest.TestCase):
-    def setUp(self):
+username = "jbhtcher@memphis.edu"
+authkey  = "u63c4853726aabbb"
 
-        self.username = "jbhtcher@memphis.edu"
-        self.authkey  = "u63c4853726aabbb"
+class SeleniumTestMac(unittest.TestCase):
+    def setUp(self):
 
         self.api_session = requests.Session()
         self.api_session.auth = (self.username,self.authkey)
@@ -25,7 +25,7 @@ class SeleniumTestWindows(unittest.TestCase):
 
         self.driver = webdriver.Remote(
             desired_capabilities=caps,
-            command_executor="http://%s:%s@hub.crossbrowsertesting.com:80/wd/hub"%(self.username,self.authkey) # include username and authkey in url
+            command_executor="http://%s:%s@hub.crossbrowsertesting.com:80/wd/hub"%(username,authkey) # include username and authkey in url
         )
 
         self.driver.implicitly_wait(20)
