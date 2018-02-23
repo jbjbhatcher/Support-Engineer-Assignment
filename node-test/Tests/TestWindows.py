@@ -4,6 +4,7 @@ import requests
 import sys
 import json
 from json import JSONEncoder
+import urllib2
 
 username = "jbhtcher@memphis.edu"
 authkey  = "u63c4853726aabbb"
@@ -46,11 +47,15 @@ class SeleniumTestWindows(unittest.TestCase):
             self.api_session.auth = (username, authkey)
             response = self.api_session.get(test_history_endpoint)
 
+            # get today's date for finding API calls that happened today
+            import datetime
+            now = datetime.datetime.now()
 
             # get the  most recent test
-            most_recent_test = self.api_session.get(test_history_endpoint + '?start_date=2018-02-22&num=1').text
-                # start_date - the date the test was started
-                # num - the number of API results to get
+            most_recent_test = self.api_session.get(test_history_endpoint + '?start_date=%s-%s-%s&num=1' % (now.year, now.month, now.day)).text
+                # PARAMS:
+                    # start_date - the date the test was started
+                    # num - the number of API results to get
 
             # take the most recent test, and access its id to refer to it
             most_recent_test = json.loads(most_recent_test)
@@ -66,8 +71,6 @@ class SeleniumTestWindows(unittest.TestCase):
 
             # profit
             response_from_post = self.api_session.put(cbt_set_endpoint, data=payload)
-            print response_from_post
-            print 'HERE IS THE ID OF THE SESSION BEING SET: ' + str(most_recent_test_id)
 
         try:
             self.driver.get('http://local:8000')

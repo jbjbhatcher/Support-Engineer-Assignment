@@ -2,6 +2,9 @@ import unittest
 from selenium import webdriver
 import requests
 import sys
+import json
+from json import JSONEncoder
+import urllib2
 
 class SeleniumTestWindows(unittest.TestCase):
     def setUp(self):
@@ -18,7 +21,7 @@ class SeleniumTestWindows(unittest.TestCase):
         caps['name'] = 'Selenium Test Example Mobile (Android)'
         caps['build'] = '1.0'
 
-        # these parameters specify which machine you want to run the test on
+        # NOTE: these are different than Windows, so they test different machines.
         caps['browserName'] = 'Chrome'
         caps['deviceName'] = 'Nexus 6P'
         caps['platformVersion'] = '7.0'
@@ -43,17 +46,17 @@ class SeleniumTestWindows(unittest.TestCase):
             self.api_session.auth = (username, authkey)
             response = self.api_session.get(test_history_endpoint)
 
+            # get today's date for finding API calls that happened today
+            import datetime
+            now = datetime.datetime.now()
 
             # get the  most recent test
-            most_recent_test = self.api_session.get(test_history_endpoint + '?start_date=2018-02-22&num=1').text
-                # start_date - the date the test was started
-                # num - the number of API results to get
+            most_recent_test = self.api_session.get(test_history_endpoint + '?start_date=%s-%s-%s&num=1' % (now.year, now.month, now.day)).text
 
             # take the most recent test, and access its id to refer to it
             most_recent_test = json.loads(most_recent_test)
 
             most_recent_test_id = most_recent_test['selenium'][0]['selenium_test_id']
-
 
             # construct the endpoint with the id
             cbt_set_endpoint = cbt_set_endpoint + str(most_recent_test_id)
@@ -63,8 +66,6 @@ class SeleniumTestWindows(unittest.TestCase):
 
             # profit
             response_from_post = self.api_session.put(cbt_set_endpoint, data=payload)
-            print response_from_post
-            print 'HERE IS THE ID OF THE SESSION BEING SET: ' + str(most_recent_test_id)
 
         try:
             self.driver.get('http://local:8000') # this is where we setup our local test server. NOTE: 'local' is used instead of localhost. This is a technical detail that can get kind of confusing, so just remember to use local when you are testing your website behind your firewall.
