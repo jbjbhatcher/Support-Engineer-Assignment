@@ -53,7 +53,7 @@ class CBTSession():
         # NOTE: the purpose of this is to get the 3 most recent tests that happened today
         most_recent_tests = self.api_session.get(test_history_endpoint + '?start_date=2018-02-22&num=1').text # ?= passing parameters
         self.most_recent_tests = json.loads(most_recent_tests) # for pretty printing, use: json.dumps(cbt.most_recent_tests, indent=4, sort_keys=True)
-        self.most_recent_test_id = self.most_recent_test_id = cbt.most_recent_tests['selenium'][0]['selenium_test_id'] # this gets the test id 
+        self.most_recent_test_id = cbt.most_recent_tests['selenium'][0]['selenium_test_id'] # this gets the test id
 def get_all(): # gets all browsers available
     out_array = []
     for i in range(len(all_browsers_available)):
@@ -62,22 +62,22 @@ def get_all(): # gets all browsers available
 
 
 # MARK: - Machine testing
-# create machine instances
-# windows_machine = Machine('Windows 10')
-# mac_machine = Machine('Mac OSX 10.9')
-# mobile_machine = Machine('Android Galaxy Note 3 / 4.4')
-# -------------------------------------------------------------
-# print get_all()
+create machine instances
+windows_machine = Machine('Windows 10')
+mac_machine = Machine('Mac OSX 10.9')
+mobile_machine = Machine('Android Galaxy Note 3 / 4.4')
+-------------------------------------------------------------
+print get_all()
 
 # print machines json value (if these print, it means the machines have been successfully retrieved & you can interact with them in python)
-# print windows_machine.caps
-# print json.dumps(mac_machine.asJson, indent=4, sort_keys=True)
-# print mobile_machine
+print windows_machine.caps
+print json.dumps(mac_machine.asJson, indent=4, sort_keys=True)
+print mobile_machine
 #
 
-# MARK: - CBT test
-cbt = CBTSession()
-# pretty print the most recent tests
-# most_recent = json.dumps(cbt.most_recent_tests, indent=4, sort_keys=True)
-most_recent_test_id = cbt.most_recent_tests['selenium'][0]['selenium_test_id']
-print most_recent
+# # MARK: - CBT test
+# cbt = CBTSession()
+# # pretty print the most recent tests
+# # most_recent = json.dumps(cbt.most_recent_tests, indent=4, sort_keys=True)
+# most_recent_test_id = cbt.most_recent_tests['selenium'][0]['selenium_test_id']
+# print most_recent
