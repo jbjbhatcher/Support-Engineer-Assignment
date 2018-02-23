@@ -17,8 +17,8 @@ Then, to setup the virtualenv, type:
 ```
 virtualenv env
 ```
-to create a local python installation.
 ### Install dependencies
+This will install the dependencies in a separate location from the system version of python, and will eliminate dependencies.
 ```
 env/bin/pip install selenium
 ```
@@ -46,12 +46,17 @@ Type the following to get the CBT Tunnels running.
 cbt_tunnels --username USERNAME --authkey AUTHKEY
 ```
 Where USERNAME is your login, and AUTHKEY is your API auth key.
-## Running the tests
 
+### Virtualenv activation
+Point your python commands to the virtualenv with:
+```
+source env/bin/activate
+```
+
+## Running the tests
 With this project, you may run tests on Windows, Android, and Mac devices.
 
 ### Test a Windows machine
-
 Run a Windows test (most heavily commented) with:
 
 ```
