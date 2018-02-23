@@ -7,13 +7,13 @@ This example project shows some of the basic functionality of the CBT API which 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
-##Install virtualenv
+## Install virtualenv
 
 ```
 pip install virtualenv
 ```
 
-##Install the CBT Node Module
+## Install the CBT Node Module
 
 ```
 npm install -g cbt_tunnels
