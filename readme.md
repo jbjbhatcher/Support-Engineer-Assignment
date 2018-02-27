@@ -1,24 +1,10 @@
 # Support Engineer Assignment
 
-This example project shows some of the basic functionality of the CBT API which will test websites behind a firewall.
+This example project shows some of the basic functionality of the CBT API which will test websites behind a firewall. It will begin with showing how to test on a single machine (Windows) while setting the pass/fail result through the Cross Browser Testing API.
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Then, this documentation will show how to test multiple tests sequentially.
 
 ## Prerequisites
-First, download the project and CD into root. All commands are assuming presence in topmost directory.
-### Install virtualenv
-
-```
-pip install virtualenv
-```
-Then, to setup the virtualenv, type:
-```
-virtualenv env
-```
-### Install dependencies
-This will install the dependencies in a separate location from the system version of python, and will eliminate dependencies.
 ```
 env/bin/pip install selenium
 ```
@@ -47,24 +33,20 @@ cbt_tunnels --username USERNAME --authkey AUTHKEY
 ```
 Where USERNAME is your login, and AUTHKEY is your API auth key.
 
-### Virtualenv activation
-Point your python commands to the virtualenv with:
-```
-source env/bin/activate
-```
-
 ## Running the tests
 With this project, you may run tests on Windows, Android, and Mac devices.
 
 ### Test a Windows machine
-Run a Windows test (most heavily commented) with:
+Windows is the file which is most heavily commented, so this will be the first one we test with. If you understand this file, the others should follow suit.
+
+Run a test on a Cross Browser Testing Windows machine by executing the command: 
 
 ```
 python tests/TestWindows.py
 ```
 upon success, this will set the result as 'pass' with the CBT PUT API endpoint.
 
-### Test all machines
+### Test multiple machines
 
 Running the following command:
 ```
