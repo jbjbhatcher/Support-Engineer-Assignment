@@ -5,6 +5,7 @@ This example project shows some of the basic functionality of the CBT API which 
 Then, this documentation will show how to test multiple tests sequentially.
 
 ## Prerequisites
+### Install the following python modules:
 ```
 pip install selenium
 ```
@@ -12,7 +13,7 @@ pip install selenium
 pip install urllib2
 ```
 
-### Install the CBT Node Module
+### Install the CBT Node Module: 
 
 ```
 npm install -g cbt_tunnels
