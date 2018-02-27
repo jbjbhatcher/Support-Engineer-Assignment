@@ -6,10 +6,10 @@ Then, this documentation will show how to test multiple tests sequentially.
 
 ## Prerequisites
 ```
-env/bin/pip install selenium
+pip install selenium
 ```
 ```
-env/bin/pip install urllib2
+pip install urllib2
 ```
 
 ### Install the CBT Node Module
@@ -39,7 +39,7 @@ With this project, you may run tests on Windows, Android, and Mac devices.
 ### Test a Windows machine
 Windows is the file which is most heavily commented, so this will be the first one we test with. If you understand this file, the others should follow suit.
 
-Run a test on a Cross Browser Testing Windows machine by executing the command: 
+Run a test on a Cross Browser Testing Windows machine by executing the command:
 
 ```
 python tests/TestWindows.py
